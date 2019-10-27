@@ -1,1 +1,34 @@
-<button class="btn btn-primary">Hello</button>
+<div style="background-color: #f3f3f3;" class="d-flex justify-content-center">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-6">
+            <div class="card">
+                <img class="img-fluid" style="height: 700px;" src="assets/images/homepage.jpg" alt="homepage">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" style="padding: 30px;width: 325px;">
+                <h3 style="margin: auto;"><b><i>Instagram</i></b></h3><br>
+                <div *ngIf="openSignup">
+                    <app-signup></app-signup>
+                </div>
+                <div *ngIf="openLogin" >
+                    <app-login></app-login>
+                </div>
+            </div><br>
+            <div class="card" style="padding: 20px 50px;width: 325px;">
+                <div *ngIf="openSignup">
+                    <p> Have an Account? <a (click)="openLoginPage()" href="#">Login</a></p>
+                </div>
+                <div *ngIf="openLogin">
+                    <p> Create an Account? <a (click)="openSignupPage()" href="#">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="background-color: #f3f3f3; padding-top: 30px;" class="d-flex justify-content-center">
+    <p>ABOUT US &nbsp;&nbsp;&nbsp; SUPPORT &nbsp;&nbsp;&nbsp; PRESS &nbsp;&nbsp;&nbsp; API &nbsp;&nbsp;&nbsp;
+        JOBS &nbsp;&nbsp;&nbsp; PRIVACY &nbsp;&nbsp;&nbsp; TERMS &nbsp;&nbsp;&nbsp; DIRECTORY &nbsp;&nbsp;&nbsp;
+        PROFILES &nbsp;&nbsp;&nbsp; HASHTAGS &nbsp;&nbsp;&nbsp; LANGUAGE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        © 2019 INSTAGRAM FROM FACEBOOK</p>
+</div>

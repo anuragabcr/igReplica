@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  openSignup = true;
+  openLogin = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  openLoginPage() {
+    this.openLogin = true;
+    this.openSignup = false;
+  }
+
+  openSignupPage() {
+    this.openSignup = true;
+    this.openLogin = false;
   }
 
 }

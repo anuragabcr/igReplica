@@ -17,10 +17,10 @@
             </div><br>
             <div class="card" style="padding: 20px 50px;width: 325px;">
                 <div *ngIf="openSignup">
-                    <p> Have an Account? <a (click)="openLoginPage()" href="#">Login</a></p>
+                    <p> Have an Account? <span class="btn-link" (click)="openLoginPage()">Login</span></p>
                 </div>
                 <div *ngIf="openLogin">
-                    <p> Create an Account? <a (click)="openSignupPage()" href="#">Sign Up</a></p>
+                    <p> Create an Account? <span class="btn-link" (click)="openSignupPage()" href="#">Sign Up</span></p>
                 </div>
             </div>
         </div>

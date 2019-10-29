@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class AuthService {
 
   url = 'http://localhost:3000/auth/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private route: Router) { }
 
   signup(userData): Observable<any> {
     var returnData = new Subject();
@@ -32,6 +34,7 @@ export class AuthService {
         data => {
           console.log(data);
           returnData.next(data);
+          this.route.navigate(['/dashboard']);
         },
         err => {
           console.log(err.error);

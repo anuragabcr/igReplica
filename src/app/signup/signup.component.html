@@ -12,12 +12,12 @@
             <hr>
         </div>
     </div>
-    <form style="margin: auto;">
-        <input class="input-style" type="text" placeholder="Mobile Number or Email"><br>
-        <input class="input-style" type="text" placeholder="Full Name"><br>
-        <input class="input-style" type="text" placeholder="User Name"><br>
-        <input class="input-style" type="password" placeholder="Password"><br>
+    <form style="margin: auto;" novalidate [formGroup]="signupForm" (ngSubmit)="signup()">
+        <input class="input-style form-control" formControlName="email" type="text" placeholder="Email"><br>
+        <input class="input-style form-control" formControlName="name" type="text" placeholder="Full Name"><br>
+        <input class="input-style form-control" formControlName="number" type="text" placeholder="Phone number"><br>
+        <input class="input-style form-control" formControlName="password" type="password" placeholder="Password"><br>
+        <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary" style="width: 100%;">Sign up</button>
     </form><br>
-    <button class="btn btn-primary" style="width: 100%;">Sign up</button>
     <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
 </div>

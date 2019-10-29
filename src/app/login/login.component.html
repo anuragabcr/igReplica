@@ -1,9 +1,9 @@
 <div >
-    <form style="margin: auto;"><br>
-        <input class="input-style" type="text" placeholder="Mobile number, email or username"><br>
-        <input class="input-style" type="password" placeholder="Password"><br>
+    <form style="margin: auto;" novalidate [formGroup]="loginForm" (ngSubmit)="login()"><br>
+        <input class="input-style form-control" formControlName="email" type="text" placeholder="Mobile number, email or username"><br>
+        <input class="input-style form-control" formControlName="password" type="password" placeholder="Password"><br>
+        <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid" style="width: 100%;">Login</button>
     </form><br>
-    <button class="btn btn-primary" style="width: 100%;">Login</button>
     <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
         <div class="col-sm-5"><hr></div>
         <div class="col-sm-2" style="font-size: 12px;padding-left: 10px;"><p >OR</p></div>

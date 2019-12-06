@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as faker from 'faker';
+import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,21 @@ import * as faker from 'faker';
 })
 export class DashboardComponent implements OnInit {
 
-  ing  = faker.image.people();
-  ava = faker.image.avatar();
+  data = [];
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
+    for (let i = 0; i < 5; i++) {
+      var temp = {
+        name: faker.name.findName(),
+        img: faker.random.image(),
+        com: faker.lorem.sentence(),
+        avatar: faker.image.avatar()
+      };
+      this.data.push(temp);
+    }
+    this.dashboardService.test();
   }
 
 }

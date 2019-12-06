@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  token;
+
   url = 'http://localhost:3000/auth/';
 
   constructor(private http: HttpClient,
@@ -19,6 +21,8 @@ export class AuthService {
       .subscribe(
         data => {
           returnData.next(data);
+          this.token = data;
+          this.saveAuthToken(this.token.token);
         },
         err => {
           returnData.next(err.error);
@@ -32,15 +36,31 @@ export class AuthService {
     this.http.post(this.url + 'login', userData)
       .subscribe(
         data => {
-          console.log(data);
           returnData.next(data);
+          this.token = data;
+          this.saveAuthToken(this.token.token);
           this.route.navigate(['/dashboard']);
         },
         err => {
-          console.log(err.error);
           returnData.next(err.error);
         }
       );
     return returnData.asObservable();
   }
+
+  logout() {
+    this.clearAuthToken();
+    this.route.navigate(['/']);
+  }
+
+  private saveAuthToken(token) {
+    localStorage.setItem('token', token);
+  }
+  private clearAuthToken() {
+    localStorage.removeItem('token');
+  }
+  getAuthToken() {
+    return localStorage.getItem('token');
+  }
+
 }

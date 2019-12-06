@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DashboardService } from '../services/dashboard.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -16,13 +18,14 @@ export class PostComponent implements OnInit {
     url: ['', [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private dashboardService: AuthService) { }
 
   ngOnInit() {
   }
 
   postSubmit(){
-
+    this.dashboardService.post(this.newPost.value);
   }
 
   imagePicked(event){

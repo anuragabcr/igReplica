@@ -1,0 +1,28 @@
+<br>
+<div class="container">
+    <div class="card" style="margin-left: 20%;margin-right: 20%;">
+        <h5 class="card-title">Create Post</h5>
+        <div class="card-body">
+            <form novalidate [formGroup]="newPost" (ngSubmit)="postSubmit()">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" class="form-control" formControlName="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" class="form-control" formControlName="description">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-primary" (click)="selectFile.click()">Select
+                        Image</button>
+                    <input type="file" style="visibility: hidden;" (change)="imagePicked($event)" #selectFile>
+                </div>
+                <div *ngIf="imgPreview !== '' && imgPreview" style="padding: 5px;">
+                    <img [src]="imgPreview" style="width: 100px;height: 150px;" alt="{{newPost.get('title')}}">
+                </div>
+                <button type="button" class="btn btn-secondary" [routerLink]="['/dashboard']">Back</button>&nbsp;&nbsp;
+                <button type="submit" class="btn btn-success" [disabled]="!newPost.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

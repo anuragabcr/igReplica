@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AuthInterceptor } from './shared/authInterceptor';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthInterceptor } from './shared/authInterceptor';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

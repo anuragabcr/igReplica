@@ -7,3 +7,7 @@
     width: 40px;
     border-radius: 50%;
 }
+.align-right {
+    float: right;
+    padding: 10px;
+}

@@ -68,7 +68,6 @@ export class AuthService {
     postData.append("title", userData.title);
     postData.append("description", userData.description);
     postData.append("url", userData.url);
-    console.log(userData);
     this.http.post(this.url + 'post', postData)
       .subscribe(
         data => {

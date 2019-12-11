@@ -11,7 +11,7 @@
         <div class="col-sm">
             <i class="fa fa-compass fa-2x"></i>&nbsp;&nbsp;&nbsp;
             <i class="fa fa-heart fa-2x"></i>&nbsp;&nbsp;&nbsp;
-            <i class="fa fa-user fa-2x"></i>&nbsp;&nbsp;&nbsp;
+            <i [routerLink]="['/profile']" class="fa fa-user fa-2x"></i>&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 </div>
@@ -32,7 +32,7 @@
                 <div>
                     <i (click)="like(i)" class="btn fa fa-heart fa-2x icon"></i><i class="fa fa-share fa-2x icon"></i>
                     <i class="fa fa-comment fa-2x icon"></i><i class="fa fa-bookmark fa-2x align-right"></i><br>
-                    <span style="padding-left: 20px;">{{item.like}} Likes</span>        
+                    <span style="padding-left: 20px;">{{item.like}} Likes</span>
                 </div>
                 <div class="card-body">
                     <p><b>{{item.postedBy | titlecase}}</b>{{item.desc}}</p>
@@ -43,4 +43,11 @@
             Suggestion
         </div>
     </div>
+</div>
+
+<div style="background-color: #f3f3f3; padding-top: 30px;" class="d-flex justify-content-center">
+    <p>ABOUT US &nbsp;&nbsp;&nbsp; SUPPORT &nbsp;&nbsp;&nbsp; PRESS &nbsp;&nbsp;&nbsp; API &nbsp;&nbsp;&nbsp;
+        JOBS &nbsp;&nbsp;&nbsp; PRIVACY &nbsp;&nbsp;&nbsp; TERMS &nbsp;&nbsp;&nbsp; DIRECTORY &nbsp;&nbsp;&nbsp;
+        PROFILES &nbsp;&nbsp;&nbsp; HASHTAGS &nbsp;&nbsp;&nbsp; LANGUAGE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        © 2019 INSTAGRAM FROM FACEBOOK</p>
 </div>

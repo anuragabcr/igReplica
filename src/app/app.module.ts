@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AuthInterceptor } from './shared/authInterceptor';
 import { PostComponent } from './post/post.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PostComponent } from './post/post.component';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    PostComponent
+    PostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

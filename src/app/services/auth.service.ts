@@ -63,20 +63,4 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  post(userData) {
-    const postData = new FormData();
-    postData.append("title", userData.title);
-    postData.append("description", userData.description);
-    postData.append("url", userData.url);
-    this.http.post(this.url + 'post', postData)
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
 }

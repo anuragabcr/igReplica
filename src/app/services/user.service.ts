@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  url = 'http://localhost:3000/post';
+  url = 'http://localhost:3000/';
 
 
   constructor(private http: HttpClient,
@@ -18,7 +18,7 @@ export class UserService {
     postData.append('title', userData.title);
     postData.append('description', userData.description);
     postData.append('url', userData.url);
-    this.http.post(this.url, postData)
+    this.http.post(this.url + 'post', postData)
       .subscribe(
         data => {
           console.log(data);
@@ -31,7 +31,15 @@ export class UserService {
   }
 
   getPost() {
-    return this.http.get(this.url);
+    return this.http.get(this.url + 'post');
+  }
+
+  getUser() {
+    return this.http.get(this.url + 'users');
+  }
+
+  changePassword(newPassword) {
+    return this.http.put(this.url + 'users/password', newPassword);
   }
 
 }

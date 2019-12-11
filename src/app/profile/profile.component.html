@@ -1,0 +1,149 @@
+<div class="container">
+    <div class="row" style="margin: 20px;">
+        <div class="col-sm">
+            <i class="fa fa-instagram fa-2x"></i>&nbsp;
+            <span class="vl"></span>&nbsp;
+            <b><i style="font-size: 25px;"> Instagram</i></b>
+        </div>
+        <div class="col-sm">
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="col-sm">
+            <i class="fa fa-compass fa-2x"></i>&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-heart fa-2x"></i>&nbsp;&nbsp;&nbsp;
+            <i [routerLink]="['/profile']" class="fa fa-user fa-2x"></i>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container" style="margin-left: 20%;margin-right: 20%;">
+    <div class="row">
+        <div class="col-3">
+            <img src="{{user.img}}" class="img-fluid" style="width: 150px;height: 150px;" alt="profile pic"
+                data-toggle="modal" data-target="#changePic">
+            <input type="file" style="visibility: hidden;">
+        </div>
+        <div class="col" style="width: 70%; height: 70%;">
+            <h3><b>{{user.name | titlecase}}</b>&nbsp;&nbsp;<i class="fa fa-cog" data-toggle="modal"
+                    data-target="#setting"></i></h3>
+            <p>{{(user.post).length}} Posts &nbsp;&nbsp;&nbsp;&nbsp; {{(user.follower).length}} Followers
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {{(user.following).length}} Following </p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-5">
+            <hr>
+        </div>
+        <div class="col-2"><b><i>&nbsp;&nbsp; Posts</i></b></div>
+        <div class="col-5">
+            <hr>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col" *ngFor="let post of user.post">
+            <img src="{{post.img}}" alt="{{post.name}}" class="img-fluid" style="max-height: 150px;">
+        </div>
+    </div>
+</div>
+<br>
+<div style="background-color: #f3f3f3; padding-top: 30px;" class="d-flex justify-content-center">
+    <p>ABOUT US &nbsp;&nbsp;&nbsp; SUPPORT &nbsp;&nbsp;&nbsp; PRESS &nbsp;&nbsp;&nbsp; API &nbsp;&nbsp;&nbsp;
+        JOBS &nbsp;&nbsp;&nbsp; PRIVACY &nbsp;&nbsp;&nbsp; TERMS &nbsp;&nbsp;&nbsp; DIRECTORY &nbsp;&nbsp;&nbsp;
+        PROFILES &nbsp;&nbsp;&nbsp; HASHTAGS &nbsp;&nbsp;&nbsp; LANGUAGE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        © 2019 INSTAGRAM FROM FACEBOOK</p>
+</div>
+
+<!-- Change Profile Pic-->
+<div class="modal fade" id="changePic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <table class="table">
+                <thead>
+                    <tr align="center">
+                        <th>Change Profile Photo</th>
+                    </tr>
+                </thead>
+                <tr align="center">
+                    <td>Upload Photo</td>
+                </tr>
+                <tr align="center">
+                    <td>Remove Current Photo</td>
+                </tr>
+                <tr align="center">
+                    <td data-dismiss="modal">Cancel</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Setting -->
+<div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <table class="table">
+                <thead>
+                    <tr align="center">
+                        <th>Setting</th>
+                    </tr>
+                </thead>
+                <tr align="center">
+                    <td data-toggle="modal" data-target="#changePassword">Change Password</td>
+                </tr>
+                <tr align="center">
+                    <td>About</td>
+                </tr>
+                <tr align="center">
+                    <td (click)="logout()">Log Out</td>
+                </tr>
+                <tr align="center">
+                    <td data-dismiss="modal" id="close">Cancel</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Change Password -->
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="padding: 10px;">
+            <form novalidate [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                <table class="table">
+                    <thead>
+                        <tr align="center">
+                            <th colspan="2">
+                                <h3>Change Password</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr align="center">
+                        <td>Old Password:</td>
+                        <td><input type="text" class="form-control" formControlName="oldPassword" placeholder="Old Password"></td>
+                    </tr>
+                    <tr align="center">
+                        <td>New Password:</td>
+                        <td><input type="text" class="form-control" formControlName="password"
+                                placeholder="New password"></td>
+                    </tr>
+                    <tr align="center">
+                        <td>Confirm password: </td>
+                        <td><input type="password" class="form-control" formControlName="rePassword"
+                                placeholder="Conform Password"></td>
+                    </tr>
+                    <tr align="center">
+                        <td><button class="btn btn-primary" type="submit" [disabled]="!passwordForm.valid">Change
+                                Password</button></td>
+                        <td><button class="btn btn-secondary" type="button" data-dismiss="modal" id="cancel">Cancel</button></td>
+                    </tr>
+                    <div class="alert alert-danger" *ngIf=err.status>{{err.msg}}</div>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
               private authService: AuthService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private route: Router) { }
 
   ngOnInit() {
     this.userService.getUser()
@@ -71,6 +73,18 @@ export class ProfileComponent implements OnInit {
       this.err.status = true;
       this.err.msg = 'Both Password not match';
     }
+  }
+
+  uploadImage(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.userService.uploadImage(file);
+    document.getElementById('closeM').click();
+    this.route.navigate(['/profile']);
+  }
+
+  removeImage() {
+    this.userService.removeImage();
+    document.getElementById('closeM').click();
   }
 
 }

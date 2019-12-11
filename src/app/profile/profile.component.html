@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row" style="margin: 20px;">
-        <div class="col-sm">
+        <div class="col-sm" [routerLink] = "['/dashboard']">
             <i class="fa fa-instagram fa-2x"></i>&nbsp;
             <span class="vl"></span>&nbsp;
             <b><i style="font-size: 25px;"> Instagram</i></b>
@@ -20,9 +20,8 @@
 <div class="container" style="margin-left: 20%;margin-right: 20%;">
     <div class="row">
         <div class="col-3">
-            <img src="{{user.img}}" class="img-fluid" style="width: 150px;height: 150px;" alt="profile pic"
+            <img [src]="user.img" class="img-fluid" style="width: 150px;height: 150px;" alt="profile pic"
                 data-toggle="modal" data-target="#changePic">
-            <input type="file" style="visibility: hidden;">
         </div>
         <div class="col" style="width: 70%; height: 70%;">
             <h3><b>{{user.name | titlecase}}</b>&nbsp;&nbsp;<i class="fa fa-cog" data-toggle="modal"
@@ -30,6 +29,7 @@
             <p>{{(user.post).length}} Posts &nbsp;&nbsp;&nbsp;&nbsp; {{(user.follower).length}} Followers
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 {{(user.following).length}} Following </p>
+            <p>{{user.about}}</p>
         </div>
     </div>
     <br>
@@ -69,14 +69,15 @@
                     </tr>
                 </thead>
                 <tr align="center">
-                    <td>Upload Photo</td>
+                    <td (click)="pickImage.click()">Upload Photo</td>
                 </tr>
                 <tr align="center">
-                    <td>Remove Current Photo</td>
+                    <td (click)="removeImage()">Remove Current Photo</td>
                 </tr>
                 <tr align="center">
-                    <td data-dismiss="modal">Cancel</td>
+                    <td data-dismiss="modal" id="closeM">Cancel</td>
                 </tr>
+                <input type="file" style="visibility: hidden;" (change)="uploadImage($event)" #pickImage>
             </table>
         </div>
     </div>
@@ -96,7 +97,7 @@
                     <td data-toggle="modal" data-target="#changePassword">Change Password</td>
                 </tr>
                 <tr align="center">
-                    <td>About</td>
+                    <td data-toggle="modal" data-target="#changeAbout">About</td>
                 </tr>
                 <tr align="center">
                     <td (click)="logout()">Log Out</td>
@@ -144,6 +145,16 @@
                     <div class="alert alert-danger" *ngIf=err.status>{{err.msg}}</div>
                 </table>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Change About -->
+
+<div class="modal fade" id="changeAbout" tabindex="-1" aria-hidden="true" role="dialog" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="padding: 10px;">
+            
         </div>
     </div>
 </div>

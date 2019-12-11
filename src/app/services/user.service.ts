@@ -42,4 +42,30 @@ export class UserService {
     return this.http.put(this.url + 'users/password', newPassword);
   }
 
+  uploadImage(file) {
+    const img = new FormData();
+    img.append('img',file);
+    this.http.put(this.url + 'users/image', img)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
+
+  removeImage() {
+    this.http.delete(this.url + 'users/image')
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
+
 }

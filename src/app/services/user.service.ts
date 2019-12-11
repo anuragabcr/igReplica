@@ -68,4 +68,16 @@ export class UserService {
       )
   }
 
+  changeAbout(about) {
+    this.http.put(this.url + 'users/about', about)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
+ 
 }

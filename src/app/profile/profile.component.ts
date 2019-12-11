@@ -87,4 +87,9 @@ export class ProfileComponent implements OnInit {
     document.getElementById('closeM').click();
   }
 
+  changeAbout() {
+    var inp = (<HTMLInputElement>document.getElementById('about')).value;
+    this.userService.changeAbout({about: inp});
+  }
+
 }

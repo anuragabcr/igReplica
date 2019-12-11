@@ -154,7 +154,10 @@
 <div class="modal fade" id="changeAbout" tabindex="-1" aria-hidden="true" role="dialog" >
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="padding: 10px;">
-            
+            <h3>ABOUT</h3>
+            <textarea name="" id="about" cols="30" rows="10">{{user.about}}</textarea>
+            <button class="btn btn-primary" type="submit" (click)="changeAbout()">Submit</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
     </div>
 </div>

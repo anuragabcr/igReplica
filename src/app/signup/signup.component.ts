@@ -44,4 +44,8 @@ export class SignupComponent implements OnInit {
     )
   }
 
+  facebook() {
+    alert('Login with Facebook Not Supported yet\nKindly Create an account or Login...');
+  }
+
 }

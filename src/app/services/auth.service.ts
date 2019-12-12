@@ -63,4 +63,18 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  resetPass(authData) {
+    var returnData = new Subject();
+    this.http.post(this.url+'auth/reset', authData)
+      .subscribe(
+        data => {
+          returnData.next(data);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    return returnData.asObservable();
+  }
+
 }

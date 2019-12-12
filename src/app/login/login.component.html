@@ -1,14 +1,88 @@
-<div >
+<div>
     <form style="margin: auto;" novalidate [formGroup]="loginForm" (ngSubmit)="login()"><br>
-        <input class="input-style form-control" formControlName="email" type="text" placeholder="Mobile number, email or username"><br>
+        <input class="input-style form-control" formControlName="email" type="text"
+            placeholder="Mobile number, email or username"><br>
+        <div *ngIf="loginForm.get('email').touched">
+            <span *ngIf="loginForm.get('email').hasError('required')" class="alert alert-danger">Email is
+                required</span>
+            <span *ngIf="loginForm.get('email').hasError('email')" class="alert alert-danger">Not a valid email</span>
+        </div>
         <input class="input-style form-control" formControlName="password" type="password" placeholder="Password"><br>
+        <div *ngIf="loginForm.get('email').touched">
+            <span *ngIf="loginForm.get('password').hasError('required')" class="alert alert-danger">Password is
+                required</span>
+            <span *ngIf="loginForm.get('password').hasError('minlength')" class="alert alert-danger">min 8 char</span>
+        </div>
         <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid" style="width: 100%;">Login</button>
+        <div *ngIf="dataReturned.status" class="alert alert-danger">{{dataReturned.msg}}</div>
     </form><br>
     <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
-        <div class="col-sm-5"><hr></div>
-        <div class="col-sm-2" style="font-size: 12px;padding-left: 10px;"><p >OR</p></div>
-        <div class="col-sm-5"><hr></div>
+        <div class="col-sm-5">
+            <hr>
+        </div>
+        <div class="col-sm-2" style="font-size: 12px;padding-left: 10px;">
+            <p>OR</p>
+        </div>
+        <div class="col-sm-5">
+            <hr>
+        </div>
     </div>
-    <button class="btn btn-primary" style="width: 100%;">Log in with Facebook</button><br>
-    <p><a href="">Forget Password?</a></p>
+    <button class="btn btn-primary" style="width: 100%;" (click)="facebook()">Log in with Facebook</button><br>
+    <p><button class="btn btn-link" data-toggle="modal" data-target="#resetPassword">Forget Password?</button></p>
+</div>
+
+<!-- Forget Password -->
+
+<div class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="padding: 15px;">
+            <form novalidate [formGroup]="passResetForm" (ngSubmit)="resetPass()">
+                <table class="table">
+                    <thead>
+                        <tr align="center">
+                            <th colspan="2">Reset Password</th>
+                        </tr>
+                    </thead>
+                    <tr align="center">
+                        <td>Email:</td>
+                        <td><input type="text" class="form-control" formControlName="email" placeholder="Email"></td>
+                    </tr>
+                    <tr align="center">
+                        <td>New Password:</td>
+                        <td><input type="text" class="form-control" formControlName="pass" placeholder="Enter Password">
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>Confirm Passowrd:</td>
+                        <td><input type="password" class="form-control" formControlName="rePass"
+                                placeholder="Enter Password"></td>
+                    </tr>
+                    <tr align="center">
+                        <td><button class="btn btn-primary" type="submit" [disabled]="!passResetForm.valid">Reset
+                                Password</button></td>
+                        <td><button class="btn btn-secondary" id="cancel" type="button" data-dismiss="modal">Cancel</button></td>
+                    </tr>
+                    <div *ngIf="resetDataReturned.status">
+                        <span class="alert alert-danger">{{resetDataReturned.msg}}</span>
+                    </div>
+                    <div *ngIf="passResetForm.get('email').touched">
+                        <span *ngIf="passResetForm.get('email').hasError('required')" class="alert alert-danger">Email
+                            is required</span>
+                        <span *ngIf="passResetForm.get('email').hasError('email')" class="alert alert-danger">Not a
+                            valid email</span>
+                    </div>
+                    <div *ngIf="passResetForm.get('pass').touched">
+                        <span *ngIf="passResetForm.get('pass').hasError('required')" class="alert alert-danger">Password
+                            is required</span>
+                        <span *ngIf="passResetForm.get('pass').hasError('minlength')" class="alert alert-danger">min 8 char</span>
+                    </div>
+                    <div *ngIf="passResetForm.get('rePass').touched">
+                        <span *ngIf="passResetForm.get('rePass').hasError('required')" class="alert alert-danger">Password
+                            is required</span>
+                        <span *ngIf="passResetForm.get('rePass').hasError('minlength')" class="alert alert-danger">min 8 char</span>
+                    </div>
+                </table>
+            </form>
+        </div>
+    </div>
 </div>

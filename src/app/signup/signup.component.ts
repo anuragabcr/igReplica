@@ -9,6 +9,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent implements OnInit {
 
+  dataReturned = {
+    msg: '',
+    status: false
+  };
   signupForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', [Validators.required, Validators.email]],
@@ -23,7 +27,21 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    this.authService.signup(this.signupForm.value)
+    var a = this.authService.signup(this.signupForm.value);
+    a.subscribe(
+      data => {
+        console.log(data);
+        if(data.status) {
+          alert('Account have been created Successfully\n Go to Login page...');
+          this.signupForm.reset();
+          this.dataReturned.status = false;
+        }
+        else {
+          this.dataReturned.msg = data.error;
+          this.dataReturned.status = true;
+        }
+      }
+    )
   }
 
 }

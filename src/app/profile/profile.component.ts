@@ -15,8 +15,16 @@ export class ProfileComponent implements OnInit {
     status: false,
     msg : ''
   };
+  userData = {
+    img: '',
+    name: '',
+    about: '',
+    posts: [],
+    follower: [],
+    following: []
+  };
+  temp;
   passChange;
-  user;
   passwordForm = this.fb.group({
     password: ['', [Validators.required, Validators.minLength(8)]],
     rePassword: ['', [Validators.required, Validators.minLength(8)]],
@@ -32,8 +40,13 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser()
       .subscribe(
         data => {
-          this.user = data;
-          console.log(this.user);
+          this.temp = data;
+          this.userData.name = this.temp.name;
+          this.userData.img = this.temp.img;
+          this.userData.about = this.temp.about;
+          this.userData.posts = this.temp.post;
+          this.userData.follower = this.temp.follower;
+          this.userData.following = this.temp.following;
         },
         err => {
           console.log(err);
@@ -77,19 +90,41 @@ export class ProfileComponent implements OnInit {
 
   uploadImage(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.userService.uploadImage(file);
+    this.userService.uploadImage(file)
+      .subscribe(
+        data => {
+          this.temp = data;
+          this.userData.img = this.temp.url;
+        }
+      )
     document.getElementById('closeM').click();
     this.route.navigate(['/profile']);
   }
 
   removeImage() {
-    this.userService.removeImage();
+    this.userService.removeImage()
+      .subscribe(
+        data => {
+          this.temp = data;
+          this.userData.img = this.temp.url;
+        },
+        err => {
+          console.log(err);
+        }
+      )
     document.getElementById('closeM').click();
   }
 
   changeAbout() {
     var inp = (<HTMLInputElement>document.getElementById('about')).value;
-    this.userService.changeAbout({about: inp});
+    this.userService.changeAbout({about: inp})
+      .subscribe(
+        data => {
+          this.temp = data;
+          this.userData.about = this.temp.about;
+        }
+      )
+    document.getElementById('closeA').click();
   }
 
 }

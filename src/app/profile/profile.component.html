@@ -20,16 +20,16 @@
 <div class="container" style="margin-left: 20%;margin-right: 20%;">
     <div class="row">
         <div class="col-3">
-            <img [src]="user.img" class="img-fluid" style="width: 150px;height: 150px;" alt="profile pic"
+            <img [src]="userData.img" class="img-fluid" style="width: 150px;height: 150px;" alt="profile pic"
                 data-toggle="modal" data-target="#changePic">
         </div>
         <div class="col" style="width: 70%; height: 70%;">
-            <h3><b>{{user.name | titlecase}}</b>&nbsp;&nbsp;<i class="fa fa-cog" data-toggle="modal"
+            <h3><b>{{userData.name | titlecase}}</b>&nbsp;&nbsp;<i class="fa fa-cog" data-toggle="modal"
                     data-target="#setting"></i></h3>
-            <p>{{(user.post).length}} Posts &nbsp;&nbsp;&nbsp;&nbsp; {{(user.follower).length}} Followers
+            <p>{{(userData.posts).length}} Posts &nbsp;&nbsp;&nbsp;&nbsp; {{(userData.follower).length}} Followers
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                {{(user.following).length}} Following </p>
-            <p>{{user.about}}</p>
+                {{(userData.following).length}} Following </p>
+            <p>{{userData.about}}</p>
         </div>
     </div>
     <br>
@@ -44,7 +44,7 @@
     </div>
     <br>
     <div class="row">
-        <div class="col" *ngFor="let post of user.post">
+        <div class="col" *ngFor="let post of userData.posts">
             <img src="{{post.img}}" alt="{{post.name}}" class="img-fluid" style="max-height: 150px;">
         </div>
     </div>
@@ -155,9 +155,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="padding: 10px;">
             <h3>ABOUT</h3>
-            <textarea name="" id="about" cols="30" rows="10">{{user.about}}</textarea>
+            <textarea name="" id="about" cols="30" rows="10">{{userData.about}}</textarea>
             <button class="btn btn-primary" type="submit" (click)="changeAbout()">Submit</button>
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal" id="closeA">Cancel</button>
         </div>
     </div>
 </div>

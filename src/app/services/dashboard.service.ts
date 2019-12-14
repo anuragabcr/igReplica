@@ -10,16 +10,9 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  test() {
-    this.http.get(this.url)
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+  allUsers() {
+    return this.http.get(this.url + 'accounts');
   }
+  
 
 }

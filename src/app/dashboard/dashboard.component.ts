@@ -10,36 +10,47 @@ import { UserService } from '../services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  posts = [];
+  allPost;
+  users;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private dashboardServie: DashboardService) { }
 
   ngOnInit() {
     this.getPosts();
+
+    this.dashboardServie.allUsers()
+      .subscribe(
+        data => {
+          this.users = data;
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+
   }
 
   getPosts() {
     this.userService.getPost()
       .subscribe(
         data => {
-          console.log(data);
-          for( var i in data){
-            this.posts.push(data[i]);
-          }
-          /*for (let i = 0; i < 5; i++) {
-            temp = {
-              name: faker.name.findName(),
-              img: faker.random.image(),
-              com: faker.lorem.sentence(),
-              avatar: faker.image.avatar()
-            };
-            this.data.push(temp);
-          }*/
+          this.allPost = data;
         },
         err => {
           console.log(err);
         }
       )
+  }
+
+  addComment(id) {
+    var com = (<HTMLInputElement> document.getElementById('comment')).value;
+    console.log(com);
+    if(com !== '') {
+      (<HTMLInputElement> document.getElementById('comment')).value = '';
+      this.userService.addComment({id: id, comment: com});
+    }
   }
 
   like(i) {

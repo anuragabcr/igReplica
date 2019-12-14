@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,31 +46,19 @@ export class UserService {
   uploadImage(file) {
     const img = new FormData();
     img.append('img',file);
-    this.http.put(this.url + 'users/image', img)
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        err => {
-          console.log(err);
-        }
-      )
+    return this.http.put(this.url + 'users/image', img);
   }
 
   removeImage() {
-    this.http.delete(this.url + 'users/image')
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        err => {
-          console.log(err);
-        }
-      )
+    return this.http.delete(this.url + 'users/image');
   }
 
   changeAbout(about) {
-    this.http.put(this.url + 'users/about', about)
+    return this.http.put(this.url + 'users/about', about);
+  }
+
+  addComment(comment) {
+    this.http.post(this.url + 'post/comment', comment)
       .subscribe(
         data => {
           console.log(data);

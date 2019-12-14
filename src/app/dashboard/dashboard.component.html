@@ -23,24 +23,41 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
-            <div class="card" *ngFor="let item of posts; let i=index" style="margin-bottom: 30px;">
+            <div class="card" *ngFor="let item of allPost.posts; let i=index" style="margin-bottom: 30px;">
                 <div style="margin: 10px;">
-                    <img src="{{item.avatar}}" class="avatar-img" alt="avatar"> &nbsp;&nbsp;
-                    <span class="card-title"><b>{{item.postedBy | titlecase}}</b></span>
+                    <img src="{{allPost.avatar}}" class="avatar-img" alt="avatar"> &nbsp;&nbsp;
+                    <span class="card-title"><b>{{allPost.name | titlecase}}</b></span>
                 </div>
                 <img src="{{item.img}}" style="max-height: 500px;" alt="faker image">
                 <div>
                     <i (click)="like(i)" class="btn fa fa-heart fa-2x icon"></i><i class="fa fa-share fa-2x icon"></i>
                     <i class="fa fa-comment fa-2x icon"></i><i class="fa fa-bookmark fa-2x align-right"></i><br>
-                    <span style="padding-left: 20px;">{{item.like}} Likes</span>
+                    <span style="padding-left: 20px;">{{item.liked}} Likes</span>
                 </div>
-                <div class="card-body">
-                    <p><b>{{item.postedBy | titlecase}}</b>{{item.desc}}</p>
+                <div class="card-body" style="margin-bottom: 0px;padding-bottom: 0px;">
+                    <p><b>{{allPost.name | titlecase}}</b> : {{item.desc}} <br>{{(item.comments).length}} Comments</p>
                 </div>
+                <form class="form-inline" style="margin: 10px;">
+                    <label for="comment"><b>Comment : </b></label>&nbsp;&nbsp;&nbsp;
+                    <input class="form-control" type="text" id="comment">&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" (click)="addComment(item._id)">Post</button>
+                </form>
             </div>
         </div>
-        <div class="col-sm-4">
-            Suggestion
+        <div class="col-sm-4" style="background-color: aliceblue;">
+            <div style="margin: 10px;" [routerLink]="['/profile']">
+                <img src="{{allPost.avatar}}" class="avatar-img" alt="avatar"> &nbsp;&nbsp;
+                <span class="card-title"><b><i>{{allPost.name | titlecase}}</i></b></span>
+            </div>
+            <hr>
+            <div >
+                Suggestions For You
+                <div *ngFor="let user of users">
+                    <img src="{{user.avatar}}" class="avatar-img" alt="avatar"> &nbsp;&nbsp;
+                    <span class="card-title"><b><i>{{user.name | titlecase}}</i></b></span>
+                    <button type="button" class="align-right btn btn-primary">Follow</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

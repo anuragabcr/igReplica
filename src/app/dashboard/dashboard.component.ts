@@ -18,7 +18,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getPosts();
+    this.getAllUsers();
+  }
 
+  getAllUsers() {
     this.dashboardServie.allUsers()
       .subscribe(
         data => {
@@ -34,10 +37,8 @@ export class DashboardComponent implements OnInit {
   showCommentPosted() {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
-  
     // Add the "show" class to DIV
     x.className = "show";
-  
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
   }
@@ -61,6 +62,19 @@ export class DashboardComponent implements OnInit {
       this.showCommentPosted();
       (<HTMLInputElement> document.getElementById('comment')).value = '';
       this.userService.addComment({id: id, comment: com});
+    }
+  }
+
+  follow(id, status) {
+    if(status === 'Follow') {
+      this.dashboardServie.follow({id: id});
+      this.getAllUsers();
+    }
+    else {
+      if(confirm('are you sure you want to unfollow him ?')) {
+        this.dashboardServie.unfollow({id: id});
+        this.getAllUsers();
+      }
     }
   }
 

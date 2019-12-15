@@ -13,6 +13,29 @@ export class DashboardService {
   allUsers() {
     return this.http.get(this.url + 'accounts');
   }
+
+  follow(userId) {
+    this.http.post(this.url + 'follow', userId)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
   
+  unfollow(userId) {
+    this.http.post(this.url + 'unfollow', userId)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
 
 }

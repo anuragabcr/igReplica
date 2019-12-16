@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row" style="margin: 20px;">
+        <div class="col-sm" [routerLink] = "['/dashboard']">
+            <i class="fa fa-instagram fa-2x"></i>&nbsp;
+            <span class="vl"></span>&nbsp;
+            <b><i style="font-size: 25px;"> Instagram</i></b>
+        </div>
+        <div class="col-sm">
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="col-sm">
+            <i class="fa fa-compass fa-2x"></i>&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-heart fa-2x"></i>&nbsp;&nbsp;&nbsp;
+            <i [routerLink]="['/profile']" class="fa fa-user fa-2x"></i>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container" style="margin-left: 20%;margin-right: 20%;">
+    <div class="row">
+        <div class="col-3">
+            <img [src]="userData.img" class="img-fluid" style="width: 150px;height: 150px;" alt="profile pic">
+        </div>
+        <div class="col" style="width: 70%; height: 70%;">
+            <h3><b>{{userData.name | titlecase}}</b>&nbsp;&nbsp;</h3>
+            <p>{{(userData.post).length}} Posts &nbsp;&nbsp;&nbsp;&nbsp; {{(userData.follower).length}} Followers
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {{(userData.following).length}} Following </p>
+            <p>{{userData.about}}</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-5">
+            <hr>
+        </div>
+        <div class="col-2"><b><i>&nbsp;&nbsp; Posts</i></b></div>
+        <div class="col-5">
+            <hr>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col" *ngFor="let post of userData.post">
+            <img src="{{post.img}}" alt="{{post.name}}" class="img-fluid" style="max-height: 150px;">
+        </div>
+    </div>
+</div>
+<br>
+<div style="background-color: #f3f3f3; padding-top: 30px;" class="d-flex justify-content-center">
+    <p>ABOUT US &nbsp;&nbsp;&nbsp; SUPPORT &nbsp;&nbsp;&nbsp; PRESS &nbsp;&nbsp;&nbsp; API &nbsp;&nbsp;&nbsp;
+        JOBS &nbsp;&nbsp;&nbsp; PRIVACY &nbsp;&nbsp;&nbsp; TERMS &nbsp;&nbsp;&nbsp; DIRECTORY &nbsp;&nbsp;&nbsp;
+        PROFILES &nbsp;&nbsp;&nbsp; HASHTAGS &nbsp;&nbsp;&nbsp; LANGUAGE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        © 2019 INSTAGRAM FROM FACEBOOK</p>
+</div>

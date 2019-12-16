@@ -39,6 +39,10 @@ export class UserService {
     return this.http.get(this.url + 'users');
   }
 
+  getUserById(userId) {
+    return this.http.post(this.url + 'users/getById', userId);
+  }
+
   changePassword(newPassword) {
     return this.http.put(this.url + 'users/password', newPassword);
   }

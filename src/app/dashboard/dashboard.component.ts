@@ -35,9 +35,13 @@ export class DashboardComponent implements OnInit {
       )
   }
 
-  showCommentPosted() {
+  showSnackbar(i) {
+    var msg = ['Comment posted successfully','Sharing post is not available yet','Bookmarking post is not available'];
+    //console.log(document.getElementById(id));
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
+    //Add snackbar message
+    x.innerText = msg[i];
     // Add the "show" class to DIV
     x.className = "show";
     // After 3 seconds, remove the show class from DIV
@@ -60,7 +64,7 @@ export class DashboardComponent implements OnInit {
     var com = ((<HTMLInputElement> document.getElementById('comment')).value).trim();
     console.log(com);
     if(com !== '') {
-      this.showCommentPosted();
+      this.showSnackbar(0);
       (<HTMLInputElement> document.getElementById('comment')).value = '';
       this.userService.addComment({id: id, comment: com});
     }

@@ -24,15 +24,16 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="card" *ngFor="let post of allPost" style="margin-bottom: 30px;">
-                <div style="margin: 10px;">
+                <div style="margin: 10px;" [routerLink]="['/post-detail', post._id]">
                     <img src="{{post.avatar}}" class="avatar-img" alt="avatar"> &nbsp;&nbsp;
                     <span class="card-title"><b>{{post.name | titlecase}}</b></span>
                 </div>
                 <img src="{{post.img}}" style="max-height: 500px;" alt="faker image">
                 <div>
                     <i (click)="like(post._id, post.liked)" [style.color]="post.liked ? 'red' : ''" class="btn fa fa-heart fa-2x icon"></i>
-                    <i class="fa fa-share fa-2x icon"></i>
-                    <i class="fa fa-comment fa-2x icon"></i><i class="fa fa-bookmark fa-2x align-right"></i><br>
+                    <i class="fa fa-share fa-2x icon" (click)="showSnackbar(1)"></i>
+                    <i class="fa fa-comment fa-2x icon" (click)="postNew.click()"></i>
+                    <i class="fa fa-bookmark fa-2x align-right" (click)="showSnackbar(2)"></i><br>
                     <span style="padding-left: 20px;">{{post.totalLike}} Likes</span>
                 </div>
                 <div class="card-body" style="margin-bottom: 0px;padding-bottom: 0px;">
@@ -40,7 +41,7 @@
                 </div>
                 <form class="form-inline" style="margin: 10px;">
                     <label for="comment"><b>Comment : </b></label>&nbsp;&nbsp;&nbsp;
-                    <input class="form-control" type="text" id="comment">&nbsp;&nbsp;&nbsp;
+                    <input class="form-control" type="text" id="comment" #postNew>&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-primary" (click)="addComment(post._id)">Post</button>
                 </form>
                 <div id="snackbar">Comment posted</div>

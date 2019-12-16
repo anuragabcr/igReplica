@@ -72,23 +72,43 @@ export class DashboardComponent implements OnInit {
 
   follow(id, status) {
     if(status === 'Follow') {
-      this.dashboardServie.follow({id: id});
-      this.getAllUsers();
+      this.dashboardServie.follow({id: id})
+        .subscribe(
+          data => {
+            this.getAllUsers();
+            this.getPosts();
+          }
+        )
     }
     else {
       if(confirm('are you sure you want to unfollow him ?')) {
-        this.dashboardServie.unfollow({id: id});
-        this.getAllUsers();
+        this.dashboardServie.unfollow({id: id})
+          .subscribe(
+            data => {
+              this.getAllUsers();
+              this.getPosts();
+            }
+          )
       }
     }
   }
 
   like(id, status) {
     if(status) {
-      this.dashboardServie.unlike({id: id});
+      this.dashboardServie.unlike({id: id})
+        .subscribe(
+          data => {
+            this.getPosts();
+          }
+        )
     }
     else {
-      this.dashboardServie.like({id: id});
+      this.dashboardServie.like({id: id})
+        .subscribe(
+          data => {
+            this.getPosts();
+          }
+        )
     }
     
   }

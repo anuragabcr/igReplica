@@ -56,9 +56,11 @@
             <div >
                 Suggestions For You
                 <div *ngFor="let user of users">
-                    <img src="{{user.avatar}}" class="avatar-img" alt="avatar" [routerLink]="['/users', user.id]"> &nbsp;&nbsp;
-                    <span class="card-title" [routerLink]="['/users', user.id]"><b><i>{{user.name | titlecase}}</i></b></span>
-                    <button type="button" class="align-right btn btn-primary" (click)="follow(user.id, user.status)">{{user.status}}</button>
+                    <div style="padding: 10px;">
+                        <img src="{{user.avatar}}" class="avatar-img" alt="avatar" [routerLink]="['/users', user.id]"> &nbsp;&nbsp;
+                        <span class="card-title" [routerLink]="['/users', user.id]"><b><i>{{user.name | titlecase}}</i></b></span>
+                        <button type="button" class="align-right btn btn-primary" (click)="follow(user.id, user.status)">{{user.status}}</button>
+                    </div>
                 </div>
             </div>
         </div>

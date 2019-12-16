@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
 
   allPost;
   users;
+  currentUser;
 
   constructor(private userService: UserService,
               private dashboardServie: DashboardService) { }
@@ -19,6 +20,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getPosts();
     this.getAllUsers();
+    this.getCurrentUser();
   }
 
   getAllUsers() {
@@ -26,7 +28,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         data => {
           this.users = data;
-          console.log(data);
         },
         err => {
           console.log(err);
@@ -56,7 +57,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addComment(id) {
-    var com = (<HTMLInputElement> document.getElementById('comment')).value;
+    var com = ((<HTMLInputElement> document.getElementById('comment')).value).trim();
     console.log(com);
     if(com !== '') {
       this.showCommentPosted();
@@ -78,8 +79,26 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  like(i) {
-    console.log(i);
+  like(id, status) {
+    if(status) {
+      this.dashboardServie.unlike({id: id});
+    }
+    else {
+      this.dashboardServie.like({id: id});
+    }
+    
+  }
+
+  getCurrentUser() {
+    this.userService.getUser()
+      .subscribe(
+        data => {
+          this.currentUser = data;
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
 }

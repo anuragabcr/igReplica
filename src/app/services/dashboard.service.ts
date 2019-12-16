@@ -38,4 +38,28 @@ export class DashboardService {
       )
   }
 
+  like(postId) {
+    this.http.post(this.url + 'like', postId)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
+
+  unlike(postId) {
+    this.http.post(this.url + 'unlike', postId)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
+
 }

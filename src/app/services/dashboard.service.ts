@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class DashboardService {
 
-  url = 'http://localhost:3000/dashboard/';
+  url = 'http://igreplicaserver-env.mwmzxmpdhm.us-east-2.elasticbeanstalk.com/dashboard/';
 
   constructor(private http: HttpClient) { }
 

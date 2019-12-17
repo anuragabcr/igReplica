@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class UserService {
 
-  url = 'http://localhost:3000/';
+  url = 'http://igreplicaserver-env.mwmzxmpdhm.us-east-2.elasticbeanstalk.com/';
 
 
   constructor(private http: HttpClient,
@@ -33,6 +33,10 @@ export class UserService {
 
   getPost() {
     return this.http.get(this.url + 'post');
+  }
+
+  getPostById(postId) {
+    return this.http.post(this.url + 'post/postById', postId);
   }
 
   getUser() {

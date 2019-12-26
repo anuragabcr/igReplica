@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class UserService {
 
-  url = 'http://igreplicaserver-env.mwmzxmpdhm.us-east-2.elasticbeanstalk.com/';
+  url = 'http://localhost:3000/';
 
 
   constructor(private http: HttpClient,
@@ -66,15 +66,18 @@ export class UserService {
   }
 
   addComment(comment) {
+    var temp = new Subject();
     this.http.post(this.url + 'post/comment', comment)
       .subscribe(
         data => {
+          temp.next(data);
           console.log(data);
         },
         err => {
           console.log(err);
         }
       )
+    return temp.asObservable();
   }
  
 }

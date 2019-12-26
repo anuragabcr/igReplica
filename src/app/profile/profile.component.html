@@ -45,7 +45,7 @@
     <br>
     <div class="row">
         <div class="col" *ngFor="let post of userData.posts">
-            <img src="{{post.img}}" alt="{{post.name}}" class="img-fluid" style="max-height: 150px;">
+            <img src="{{post.img}}" alt="{{post.name}}" [routerLink]="['/post-detail', post.id]" class="img-fluid" style="max-height: 150px;">
         </div>
     </div>
 </div>

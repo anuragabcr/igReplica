@@ -10,7 +10,7 @@ export class AuthService {
 
   token;
 
-  url = 'http://igreplicaserver-env.mwmzxmpdhm.us-east-2.elasticbeanstalk.com/';
+  url = 'http://localhost:3000/';
 
   constructor(private http: HttpClient,
               private route: Router) { }
@@ -75,6 +75,10 @@ export class AuthService {
         }
       );
     return returnData.asObservable();
+  }
+
+  loginPageImg() {
+    return this.http.get(this.url + 'auth/homepage');
   }
 
 }

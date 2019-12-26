@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,21 @@ export class HomeComponent implements OnInit {
 
   openSignup = true;
   openLogin = false;
+  img;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.loginPageImg()
+      .subscribe(
+        data => {
+          console.log(data);
+          this.img = data;
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
   openLoginPage() {

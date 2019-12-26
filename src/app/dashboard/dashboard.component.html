@@ -67,6 +67,11 @@
     </div>
 </div>
 
+<div *ngIf="allPost.length == 0" style="margin: 20px;background-color: aqua;">
+    <h2>You have not posted anything or started following anyone</h2>
+    <h3>Start following someone to see there posts</h3>
+</div>
+
 <div style="background-color: #f3f3f3; padding-top: 30px;" class="d-flex justify-content-center">
     <p>ABOUT US &nbsp;&nbsp;&nbsp; SUPPORT &nbsp;&nbsp;&nbsp; PRESS &nbsp;&nbsp;&nbsp; API &nbsp;&nbsp;&nbsp;
         JOBS &nbsp;&nbsp;&nbsp; PRIVACY &nbsp;&nbsp;&nbsp; TERMS &nbsp;&nbsp;&nbsp; DIRECTORY &nbsp;&nbsp;&nbsp;

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row" style="margin: 20px;">
-        <div class="col-sm">
+        <div class="col-sm" [routerLink] = "['/dashboard']">
             <i class="fa fa-instagram fa-2x"></i>&nbsp;
             <span class="vl"></span>&nbsp;
             <b><i style="font-size: 25px;"> Instagram</i></b>
@@ -21,21 +21,37 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <img src="{{postDetail.img}}" alt="{{postDetail.name}}" style="width: 100%;height: 100%;" class="img-fluid">
+                <img src="{{postDetail.img}}" alt="{{postDetail.name}}" style="height: 600px;" class="img-fluid">
             </div>
             <div class="col-4" style="padding: 10px;">
-                <div style="height: 10%;">
+                <div style="height: 60px;">
                     <img src="{{postDetail.avatar}}" class="avatar-img" alt="{{postDetail.name}}">
-                    <span><b><i>{{postDetail.name | titlecase}}</i></b></span>
-                    <p>{{postDetail.name | titlecase}}: {{postDetail.desc}}</p>
-                </div>
-                <div style="height: 60%;">
-                    <div *ngFor="let com of postDetail.comment">
-                        {{com}}
+                    <span><b><i>{{postDetail.name | titlecase}}</i></b></span><br>
+                    <p style="padding-top: 10px;">{{postDetail.name | titlecase}}: {{postDetail.desc}}</p>
+                </div><hr>
+                <div style="height: 360px;">
+                    <div *ngIf="(postDetail.comment).length > 0; else elseBlock">
+                        <div *ngFor="let com of postDetail.comment">
+                            {{com.name | titlecase}} : {{com.comm}}
+                        </div>
                     </div>
+                    <ng-template #elseBlock>
+                        No comment have been made on this post
+                    </ng-template>
                 </div>
-                <div>
-                    
+                <div style="height: 30px;">
+                    <form class="form-inline">
+                        <input class="form-control" placeholder="Enter comment" type="text" id="comment">&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-primary" (click)="addComment()">Post</button>
+                    </form>
+                    <div id="snackbar">Comment posted</div>
+                </div><hr>
+                <div style="height: 50px;padding: 0px;margin: 0px;">
+                    <i (click)="like(postDetail.liked)" [style.color]="postDetail.liked ? 'red' : ''" class="btn fa fa-heart fa-2x icon"></i>
+                    <i class="fa fa-share fa-2x icon" (click)="showSnackbar(1)"></i>
+                    <i class="fa fa-comment fa-2x icon"></i>
+                    <i class="fa fa-bookmark fa-2x align-right" (click)="showSnackbar(2)"></i><br>
+                    <span style="padding-left: 20px;">{{postDetail.totalLike}} Likes</span>
                 </div>
             </div>
         </div>
